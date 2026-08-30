@@ -149,6 +149,9 @@ Copy `.openclaw/skills/look-first/` into your skills directory.
 
 ## Files
 
+[`MAINTENANCE.md`](MAINTENANCE.md) — the whole job: follow the two upstreams, copy new rules in verbatim, keep our one section in their voice.
+
+
 | Path | What |
 |---|---|
 | `CLAUDE.md` | Always-on rules. Drop into a project or `~/.claude/`. |
