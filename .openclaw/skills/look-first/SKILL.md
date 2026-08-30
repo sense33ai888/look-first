@@ -1,6 +1,6 @@
 ---
 name: look-first
-description: "Read what you were given before building something new. Use whenever a task involves a repo, library, tool, dataset, template collection, or existing files you did not write — and before producing any derivative artifact (chart, diagram, summary, report, wrapper). Enforces: think before building, inventory the resource fully, reuse what already exists, keep it simple, make surgical changes, define verifiable success criteria, and say out loud what you skipped. Domain-agnostic: code, research, documents, data."
+description: "Read what you were given before building something new. Use whenever a task involves a repo, library, tool, dataset, template collection, or existing files you did not write — and before producing any derivative artifact (chart, diagram, summary, report, wrapper). Enforces: think before building, climb the ladder (does it need to exist / already here / stdlib / native / one line), keep it simple, make surgical changes, define verifiable success criteria, and say out loud what you skipped. Domain-agnostic: code, research, documents, data."
 homepage: https://github.com/sense33ai888/look-first
 license: MIT
 ---
@@ -35,33 +35,54 @@ The cost of guessing decides whether "stop and ask" or "keep going" is right:
 - **Missing intent or scope** (the whole task could be wasted work) — stop, name exactly
   what is unclear, ask.
 
-## 2. Inventory, Reuse, Then Build
+## 2. The Ladder
 
-**Read what you were given before you build something new.**
+Stop at the first rung that holds.
 
-Before producing anything *from* something you were handed — a repo, a library, a tool, a
-dataset, an existing file:
+1. **Does this need to exist at all?** Speculative need = skip it, say so in one line. (YAGNI)
+2. **Already here?** A helper, util, type, or pattern that already lives here → reuse it.
+   Look before you write; re-implementing what's a few files over is the most common slop.
+   **This covers anything you were handed** — a repo, a library, a dataset, a template
+   collection: read its entry documents and index *all the way through*, not the first
+   screen, and list what it actually provides before you generate from it.
+3. **Stdlib does it?** Use it.
+4. **Native platform feature covers it?** `<input type="date">` over a picker lib, CSS over
+   JS, DB constraint over app code.
+5. **Already-installed dependency solves it?** Use it. Never add a new one for what a few
+   lines can do.
+6. **Can it be one line?** One line.
+7. **Only then:** the minimum that works.
 
-- **Read its entry documents and index all the way through.** Not the first screen, not a
-  sample. List what it actually provides.
-- Check whether the thing you are about to make already exists: a template it ships, a
-  prior analysis, an existing file, a standard tool. If it does, use it.
-- Use it the way it was designed to be used, or say why you're not.
+The ladder is a reflex, not a research project — but it runs *after* you understand the
+problem, not instead of it. Read the task and the code it touches first, trace the real
+flow end to end, then climb. Two rungs work → take the higher one and move on. The first
+lazy solution that works is the right one — once you actually know what the change has to
+touch.
 
-**Rebuilding what already lives here — or a few files over — is the most common error.**
-
-Read fully, *then* keep the output small. The reverse — skipping the reading to ship
-something short — is how you ship a confident wrong answer.
+**Bug fix = root cause, not symptom.** A report names a symptom. Before you edit, grep
+every caller of the function you're about to touch. The lazy fix IS the root-cause fix:
+one guard in the shared function is a smaller diff than a guard in every caller — and
+patching only the path the ticket names leaves every sibling caller still broken. Fix it
+once, where all callers route through.
 
 ## 3. Simplicity First
 
 **Minimum work that solves the problem. Nothing speculative.**
 
 - No features beyond what was asked.
-- No abstractions for single-use code.
+- No abstractions for single-use code: no interface with one implementation, no factory
+  for one product, no config for a value that never changes.
 - No "flexibility" or "configurability" that wasn't requested.
 - No error handling for impossible scenarios.
+- No boilerplate, no scaffolding "for later", later can scaffold for itself.
+- Deletion over addition. Boring over clever, clever is what someone decodes at 3am.
+- Fewest files possible. Shortest working diff wins — but only once you understand the
+  problem. The smallest change in the wrong place isn't lazy, it's a second bug.
 - If you write 200 lines and it could be 50, rewrite it.
+- Two options, same size? Take the one that's correct on edge cases. Lazy means writing
+  less, not picking the flimsier algorithm.
+- Complex request? Ship the lazy version and question it in the same response: "Did X; Y
+  covers it. Need full X? Say so." Never stall on an answer you can default.
 
 Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
@@ -112,28 +133,46 @@ For multi-step tasks, state a brief plan:
 Strong success criteria let you loop independently. Weak criteria ("make it work") require
 constant clarification.
 
-## 6. Say What You Skipped
+Lazy work without its check is unfinished. Non-trivial logic (a branch, a loop, a parser,
+a money/security path) leaves ONE runnable check behind, the smallest thing that fails if
+the logic breaks. No frameworks, no fixtures, no per-function suites unless asked. Trivial
+one-liners need no test, YAGNI applies to tests too.
 
-Deviating from how a resource is meant to be used, or cutting a real corner: one line, out
-loud, not buried.
+## 6. Output
 
-Pattern: *did X; skipped Y, add it when Z.*
+Result first. Then at most three short lines: what was skipped, when to add it. No essays,
+no feature tours, no design notes. If the explanation is longer than the thing it explains,
+delete the explanation — every paragraph defending a simplification is complexity smuggled
+back in as prose. Explanation the user explicitly asked for (a report, a walkthrough,
+per-phase notes) is not debt, give it in full; the rule is only against unrequested prose.
 
-If the explanation is longer than the thing it explains, delete the explanation.
+Pattern: `[result] → skipped: [X], add when [Y].`
+
+Mark a deliberate simplification that cuts a real corner with a known ceiling (global lock,
+O(n²) scan, naive heuristic) with a comment naming the ceiling and the upgrade path.
+
+---
 
 ## Never simplify away
 
-Safety-relevant checks. Error handling that prevents data loss. Anything explicitly
-requested. Source citations. Correctness itself.
+Input validation at trust boundaries, error handling that prevents data loss, security
+measures, accessibility basics, source citations, correctness itself, anything explicitly
+requested. User insists on the full version → build it, no re-arguing.
 
-These guidelines govern **how you work**, not how high the bar is.
+**Never lazy about understanding the problem.** The ladder shortens the solution, never
+the reading. Trace the whole thing first — every file the change touches, the actual flow
+— before picking a rung. Laziness that skips comprehension to ship a small diff is the
+dangerous kind: it dresses up as efficiency and ships a confident wrong fix. **Read fully,
+then be lazy.**
 
-## Boundaries
-
-Governs process, not tone or subject-matter judgment. "stop look-first" / "normal mode":
-revert.
+---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due
 to overcomplication, clarifying questions come before implementation rather than after
 mistakes, fewer "that tool already had X" moments after the fact, and fewer artifacts that
 carry no new information.
+
+## Boundaries
+
+Governs process, not tone or subject-matter judgment. "stop look-first" / "normal mode":
+revert.

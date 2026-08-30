@@ -27,26 +27,26 @@ the thing itself.
 The output looks like progress. It quietly misses what was already there.
 
 `look-first` is [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
-kept whole, extended with the reflex that stops the above — for code, research, documents,
-data, diagrams.
+and [ponytail](https://github.com/DietrichGebert/ponytail) kept whole, deduplicated, and
+extended past code — to research, documents, data, diagrams.
 
 ## The rules
 
-| | Rule | |
-|---|---|---|
-| **1** | **Think before building** | State assumptions. Present both readings, don't pick silently. Simpler approach exists → say so. Unclear → name it and ask. |
-| **2** | **Inventory, reuse, then build** | Read the resource's entry docs and index *all the way through* — not the first screen. Already exists → use it. |
-| **3** | **Simplicity first** | Minimum work that solves the problem. Nothing speculative. 200 lines that could be 50 → rewrite. |
-| **4** | **Surgical changes** | Touch only what you must. Every changed line traces to the request. |
-| **5** | **Goal-driven execution** | Turn the task into a verifiable goal. Loop until it passes. |
-| **6** | **Say what you skipped** | *Did X; skipped Y, add it when Z.* One line, not buried. |
+| | Rule | | From |
+|---|---|---|---|
+| **1** | **Think before building** | State assumptions. Present both readings, don't pick silently. Simpler approach exists → say so. Unclear → name it and ask. | karpathy |
+| **2** | **The ladder** | Stop at the first rung that holds: needs to exist? · already here? · stdlib? · native? · one line? · then minimum. | ponytail |
+| **3** | **Simplicity first** | Minimum work that solves the problem. Nothing speculative. 200 lines that could be 50 → rewrite. | both |
+| **4** | **Surgical changes** | Touch only what you must. Every changed line traces to the request. | karpathy |
+| **5** | **Goal-driven execution** | Turn the task into a verifiable goal. Loop until it passes. Leave one runnable check. | both |
+| **6** | **Output** | Result first, then ≤3 lines: *did X; skipped Y, add when Z.* | ponytail |
 
-Rules 1, 3, 4 and 5 are karpathy's, kept intact. Rule 2 is the addition and the one that
-gets skipped in practice — **rebuilding what already lives here, or a few files over, is
-the most common error.** Rule 6 keeps the shortcut visible.
+The one thing neither had, grafted onto ladder rung 2: **anything you were handed — a
+repo, a library, a dataset, a template collection — gets its entry docs and index read
+all the way through, not the first screen, before you generate from it.**
 
-Rule 2 runs **after** you understand the task, never instead of it.
-**Read fully, then keep the output small.** The reverse ships a confident wrong answer.
+The ladder runs **after** you understand the problem, never instead of it.
+**Read fully, then be lazy.** The reverse ships a confident wrong answer.
 
 ## Before any derivative
 
@@ -151,16 +151,18 @@ Clarifying questions landing before the work instead of after the mistake.
 
 **Base:** [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) —
 think before coding · simplicity first · surgical changes · goal-driven execution — itself
-derived from Andrej Karpathy's observations on LLM coding pitfalls. Its four sections are
-kept **in full**; they are rules 1, 3, 4 and 5 here.
+derived from Andrej Karpathy's observations on LLM coding pitfalls. All four sections kept
+**in full**: rules 1, 3, 4, 5.
 
-**Extended with** [ponytail](https://github.com/DietrichGebert/ponytail) (MIT): the
-reuse-first reflex, the guard that comprehension must come *before* shortening, and the
-"say what you skipped" output shape.
+**Merged with** [ponytail](https://github.com/DietrichGebert/ponytail) (MIT) — the lazy
+senior dev. Its ladder, root-cause rule, simplicity rules, output shape, the
+one-runnable-check rule, and "read fully, then be lazy" kept **in full**: rule 2, rule 6,
+and the extra bullets in rules 3 and 5. Dropped only what the two duplicated, plus
+ponytail's `lite/full/ultra` switching — this is **full** mode, fixed.
 
-**Added here:** inventory a resource you were handed before generating from it (rule 2);
-the derivative test; the logistics-vs-intent split that decides when to stall and when to
-drive; and the generalisation of all of it beyond code.
+**Added here:** ladder rung 2 extended to cover anything you were handed (read its index
+before generating from it); the derivative test; the logistics-vs-intent split that decides
+when to stall and when to drive; and the generalisation of all of it beyond code.
 
 ## License
 
