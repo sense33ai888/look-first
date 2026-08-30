@@ -1,7 +1,7 @@
 ---
 name: look-first
 description: "Read what you were given before building something new. Use whenever a task involves a repo, library, tool, dataset, template collection, or existing files you did not write — and before producing any derivative artifact (chart, diagram, summary, report, wrapper). Enforces: inventory the resource fully, reuse what already exists, keep the output to the smallest form that carries the information, and say out loud what you skipped. Domain-agnostic: code, research, documents, data."
-homepage: https://github.com/obo-yang/look-first
+homepage: https://github.com/sense33ai888/look-first
 license: MIT
 ---
 

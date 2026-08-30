@@ -114,7 +114,7 @@ These rules govern **how you work**, not how high the bar is.
 **Claude Code**
 
 ```bash
-/plugin marketplace add obo-yang/look-first
+/plugin marketplace add sense33ai888/look-first
 /plugin install look-first@look-first
 ```
 
