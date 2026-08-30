@@ -9,9 +9,8 @@
   "plugins": [
     {
       "name": "look-first",
-      "source": "./",
       "description": "Inventory the resource, reuse what exists, build the smallest form that carries the information, say what you skipped.",
-      "version": "1.0.0",
+      "source": "./",
       "category": "workflow"
     }
   ]
