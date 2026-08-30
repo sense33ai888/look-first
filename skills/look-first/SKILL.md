@@ -16,6 +16,11 @@ Domain-agnostic — code, research, documents, data, diagrams.
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use
 judgment.
 
+## Persistence
+
+ACTIVE EVERY RESPONSE. No drift back to over-building, or to generating around a resource
+instead of from it. Still active if unsure. Off only: "stop look-first" / "normal mode".
+
 ## 1. Think Before Building
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
@@ -173,5 +178,4 @@ carry no new information.
 
 ## Boundaries
 
-Governs process, not tone or subject-matter judgment. "stop look-first" / "normal mode":
-revert.
+Governs process, not tone or subject-matter judgment.
