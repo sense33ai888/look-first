@@ -15,121 +15,60 @@
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
   <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20OpenClaw-111111?style=flat-square" alt="Works with Claude Code and OpenClaw">
   <img src="https://img.shields.io/badge/scope-any%20domain-111111?style=flat-square" alt="Domain agnostic">
-  <img src="https://img.shields.io/badge/rules-6-111111?style=flat-square" alt="6 rules">
 </p>
 
 ---
 
-An agent is handed a template library, a repo, a dataset. It opens one file, forms a
-rough idea of what the thing is, and then generates *around* that idea instead of *from*
-the thing itself.
-
-The output looks like progress. It quietly misses what was already there.
+An agent is handed a template library, a repo, a dataset. It opens one file, forms a rough
+idea of what the thing is, and generates *around* that idea instead of *from* the thing
+itself. The output looks like progress and quietly misses what was already there.
 
 `look-first` is [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
-and [ponytail](https://github.com/DietrichGebert/ponytail) kept whole, deduplicated, and
-extended past code — to research, documents, data, diagrams.
+and [ponytail](https://github.com/DietrichGebert/ponytail) carried verbatim, plus one
+section for the miss above, generalised past code to research, documents, data, diagrams.
 
 ## Surface is not understanding
 
-The addition. Everything numbered below is karpathy's and ponytail's, unchanged.
+The one addition. The rest is the two upstreams, unedited.
 
 > **A first impression of a thing is not knowledge of it. Don't act on the impression.**
 >
 > Anything handed to you — a repo, a library, a document, a dataset, someone else's answer:
 >
 > - Enumerate before you conclude. What it contains, not what it looks like it contains.
-> - **Never claim an absence you haven't verified.** "There's no template for this" needs the list that proves it. No list, no claim — say "I haven't checked."
-> - Before any derivative — a chart, a summary, a wrapper — say what it adds. Nothing to say, don't build it.
-> - Missing logistics (a tool, a file, a login)? Say what you need and keep going. Missing intent? Stop and ask, guessing wastes the whole task.
+> - **Never claim an absence you haven't verified.** "There's no template for this" needs
+>   the list that proves it. No list, no claim — say "I haven't checked."
+> - Before any derivative — a chart, a summary, a wrapper — say what it adds. Nothing to
+>   say, don't build it.
+> - Missing logistics (a tool, a file, a login)? Say what you need and keep going. Missing
+>   intent? Stop and ask, guessing wastes the whole task.
 
-> ❌ "The library has no graph template, so I wrote one."
-> The template was in `templates/`, never opened.
+**Failure it is named after:**
+
+> ❌ "The library has no graph template, so I wrote one." — the template was in
+> `templates/`, never opened.
 >
-> ✅ "Listed `templates/`: 5 galleries, 64 charts, `big-force.html` is the graph one. Using it."
+> ✅ "Listed `templates/`: 5 galleries, 64 charts, `big-force.html` is the graph one.
+> Using it."
 
-**The test:** a stated absence is checkable. Say something isn't there and you can be asked
+The test: a stated absence is checkable. Say something isn't there and you can be asked
 what you enumerated — the answer is a list or an admission.
 
-## The rules
+## The rest
 
-| | Rule | | From |
-|---|---|---|---|
-| **1** | **Think before coding** | State assumptions. Present both readings, don't pick silently. Simpler approach exists → say so. Unclear → name it and ask. | karpathy |
-| **2** | **The ladder** | Stop at the first rung that holds: needs to exist? · already in this codebase? · stdlib? · native? · installed dep? · one line? · then minimum. | ponytail |
-| **3** | **Simplicity first** | Minimum code that solves the problem. Nothing speculative. 200 lines that could be 50 → rewrite. | both |
-| **4** | **Surgical changes** | Touch only what you must. Every changed line traces to the request. | karpathy |
-| **5** | **Goal-driven execution** | Turn the task into a verifiable goal. Loop until it passes. Leave one runnable check. | both |
-| **6** | **Output** | Code first, then ≤3 lines: *did X; skipped Y, add when Z.* | ponytail |
+From the upstreams, verbatim — read [`CLAUDE.md`](CLAUDE.md):
 
-Plus **Persistence**, **Never simplify away** and **Boundaries**, from ponytail.
-
-The ladder runs **after** you understand the problem, never instead of it.
-**Read fully, then be lazy.** The reverse ships a confident wrong answer.
-
-## Before any derivative
-
-Charts, diagrams, summaries, wrappers, "improved" versions:
-
-> ### What does this carry that the thing it derives from doesn't?
-
-No answer → don't build it. Say the existing artifact already covers it.
-
-## What it looks like
-
-**Handed a template library, asked for a chart**
-
-> ❌ Open one file, see roughly how it works, hand-write a generic chart in the underlying
-> library. Looks fine — and ignores the 64 purpose-built templates and their entire visual
-> language.
->
-> ✅ Read `catalog.md`, pick by data shape, open that template's code block, swap the data,
-> keep the skeleton.
-> → *Used template C8; each row got its own scale because the values span three orders of
-> magnitude.*
-
-**Asked to visualise an analysis you already wrote**
-
-> ❌ Build three versions in two libraries.
->
-> ✅ *The analysis already states this in a form that reads faster. A diagram here is
-> polish, not information — want it anyway?*
-
-**A tool's validator keeps rejecting your input**
-
-> ❌ Reshape the content until the tool accepts it, then ship the reshaped thing.
->
-> ✅ *This tool models pipelines; the data is an argument graph. It only passes if I flatten
-> it into one chain, which drops the point. Wrong tool — here's what fits.*
-
-**Asked to add a config option**
-
-> ❌ Add the option, a default, a validator, docs for it, and two more options "while we're
-> here".
->
-> ✅ *Added the one option. Skipped the other two — no caller wants them yet.*
-
-**Told to fix a bug in one caller**
-
-> ❌ Patch the path the ticket names. Ship.
->
-> ✅ Grep every caller first. One guard in the shared function is a smaller diff *and* fixes
-> the four siblings that were equally broken.
-
-**Something in the request is missing**
-
-> Missing **logistics** (a tool to install, a file to be handed, a login) → say what you
-> need and how to provide it, then keep going. Don't stall.
->
-> Missing **intent or scope** (the whole task could be wasted work) → stop, name exactly
-> what's unclear, ask.
-
-## Never simplify away
-
-Safety-relevant checks · error handling that prevents data loss · anything explicitly
-requested · source citations · correctness itself.
-
-These rules govern **how you work**, not how high the bar is.
+| | | from |
+|---|---|---|
+| **Persistence** | active every response, `full` mode | ponytail |
+| **1. Think Before Coding** | state assumptions, surface tradeoffs, ask when unclear | karpathy |
+| **2. The Ladder** | stop at the first rung that holds; reuse before you write | ponytail |
+| **3. Simplicity First** | minimum that solves it, nothing speculative | both |
+| **4. Surgical Changes** | touch only what you must | karpathy |
+| **5. Goal-Driven Execution** | verifiable success criteria, one runnable check | both |
+| **6. Output** | code first, then ≤3 lines of what you skipped | ponytail |
+| **Never simplify away** | trust boundaries, data-loss guards, understanding the problem | ponytail |
+| **Boundaries** | governs what you build, not how you talk | ponytail |
 
 ## Install
 
@@ -140,8 +79,8 @@ These rules govern **how you work**, not how high the bar is.
 /plugin install look-first@look-first
 ```
 
-Or drop `CLAUDE.md` into a project — or into `~/.claude/CLAUDE.md` to make it always-on
-everywhere. Or copy `skills/look-first/` into `~/.claude/skills/`.
+Or drop `CLAUDE.md` into a project — or `~/.claude/CLAUDE.md` to make it always-on
+everywhere.
 
 **OpenClaw**
 
@@ -149,46 +88,32 @@ Copy `.openclaw/skills/look-first/` into your skills directory.
 
 ## Files
 
-[`MAINTENANCE.md`](MAINTENANCE.md) — the whole job: follow the two upstreams, copy new rules in verbatim, keep our one section in their voice.
-
-
 | Path | What |
 |---|---|
-| `CLAUDE.md` | Always-on rules. Drop into a project or `~/.claude/`. |
-| `skills/look-first/SKILL.md` | Claude Code skill form (on-demand). |
-| `.openclaw/skills/look-first/SKILL.md` | OpenClaw skill form. |
+| [`CLAUDE.md`](CLAUDE.md) | The rules. Drop into a project or `~/.claude/`. |
+| `skills/look-first/SKILL.md` | Claude Code skill form (same body). |
+| `.openclaw/skills/look-first/SKILL.md` | OpenClaw skill form (same body). |
+| [`MAINTENANCE.md`](MAINTENANCE.md) | The whole job going forward: track the two upstreams. |
 | `.claude-plugin/` | Plugin + marketplace manifests. |
 
-Two formats, one skill, no build step, no separate examples file — deliberately. Spreading
-the same sixty lines across twenty agent formats would be exactly the unrequested
-configurability these rules argue against.
-
-## Working if
-
-Fewer *"that tool already had X"* moments after the fact.
-Fewer artifacts that carry no new information.
-Clarifying questions landing before the work instead of after the mistake.
+Two formats, one skill, no build step, no separate examples file. Spreading the same rules
+across twenty agent formats would be exactly the unrequested configurability they argue
+against.
 
 ## Credits
 
-**Base:** [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) —
-think before coding · simplicity first · surgical changes · goal-driven execution — itself
-derived from Andrej Karpathy's observations on LLM coding pitfalls. All four sections kept
-**in full**: rules 1, 3, 4, 5.
+**[andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)** — think
+before coding · simplicity first · surgical changes · goal-driven execution — from Andrej
+Karpathy's observations on LLM coding pitfalls. All four sections carried in full.
 
-**Merged with** [ponytail](https://github.com/DietrichGebert/ponytail) (MIT) — the lazy
-senior dev. Its ladder, root-cause rule, simplicity rules, output shape, one-runnable-check
-rule, persistence, boundaries, never-simplify list and "read fully, then be lazy" kept
-**in full**. Dropped only what the two sources duplicated, plus the `lite/full/ultra`
-switcher — this is **full** mode, fixed.
+**[ponytail](https://github.com/DietrichGebert/ponytail)** (MIT) — the lazy senior dev.
+Ladder, root-cause rule, simplicity rules, output shape, one-runnable-check, persistence,
+boundaries, never-simplify list, "read fully, then be lazy" — all carried in full.
 
-Neither source's text is edited. Their sections are verbatim; the only renames are
-`ponytail` → `look-first` in the mode-off phrase and the ceiling-comment prefix.
-
-**Added here — the "Surface is not understanding" section, and nothing else:** enumerate
-before concluding, never claim an absence you haven't verified, the derivative test, and
-the logistics-vs-intent split that decides when to stall and when to drive. Plus the
-generalisation of all of it past code.
+Neither source's text is edited. Dropped: what the two duplicated, the frontmatter and
+persona lines, and ponytail's `lite/full/ultra` switcher (kept as one line in Persistence:
+`full` mode, fixed). The only renames are `ponytail` → `look-first` in the off-switch and
+the ceiling-comment prefix. See [`MAINTENANCE.md`](MAINTENANCE.md).
 
 ## License
 
