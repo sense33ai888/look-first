@@ -10,6 +10,9 @@ research, documents, data, diagrams.
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use
 judgment.
 
+Everything numbered below is karpathy's and ponytail's, unchanged. Outside code, read
+"code" as "the result" and "diff" as "the change".
+
 ## Persistence
 
 ACTIVE EVERY RESPONSE. No drift back to over-building. Still active if unsure. Off only:
@@ -18,20 +21,25 @@ native first, shortest diff, shortest explanation.
 
 ## Surface is not understanding
 
-A first impression of what you were given is not knowledge of it — a repo, a library, a
-document, a dataset, someone else's answer. Do not act on the impression.
+**A first impression of a thing is not knowledge of it. Don't act on the impression.**
 
-- **Enumerate before you conclude.** What it actually contains, not what it looks like it
-  contains.
-- **Never claim absence you haven't verified.** "There's no X here" requires the list.
-  Otherwise say *"I haven't checked."*
-- **Before any derivative, ask what it adds.** A chart, a summary, a wrapper — what does it
-  carry that the source doesn't? No answer → don't build it.
-- **Missing logistics → drive. Missing intent → stop and ask.**
+Anything handed to you — a repo, a library, a document, a dataset, someone else's answer:
 
-Everything numbered below is karpathy's and ponytail's, unchanged. Outside code, read
-"code" as "the result" and "diff" as "the change". Source citations and correctness itself
-are never simplified away.
+- Enumerate before you conclude. What it contains, not what it looks like it contains.
+- **Never claim an absence you haven't verified.** "There's no template for this" needs the
+  list that proves it. No list, no claim — say "I haven't checked."
+- Before any derivative — a chart, a summary, a wrapper — say what it adds. Nothing to say,
+  don't build it.
+- Missing logistics (a tool, a file, a login)? Say what you need and keep going. Missing
+  intent? Stop and ask, guessing wastes the whole task.
+
+❌ "The library has no graph template, so I wrote one."
+   The template was in `templates/`, never opened.
+
+✅ "Listed `templates/`: 5 galleries, 64 charts, `big-force.html` is the graph one. Using it."
+
+The test: a stated absence is checkable. Say something isn't there and you can be asked
+what you enumerated — the answer is a list or an admission.
 
 ## 1. Think Before Coding
 
