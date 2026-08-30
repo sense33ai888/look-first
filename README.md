@@ -84,7 +84,13 @@ everywhere.
 
 **OpenClaw**
 
-Copy `.openclaw/skills/look-first/` into your skills directory.
+```bash
+git clone https://github.com/sense33ai888/look-first
+cp -r look-first/.openclaw/skills/look-first ~/.openclaw/skills/
+```
+
+OpenClaw applies it on tasks and exposes it as `/look-first`. (No ClawHub package
+published — the manual copy is the path.)
 
 ## Files
 
