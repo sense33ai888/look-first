@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320" role="img" aria-label="look-first">
+  <title>look-first</title>
+  <g fill="none" stroke="#111111" stroke-linecap="square">
+
+    <!-- what already exists: a stack you were handed -->
+    <rect x="46"  y="128" width="132" height="20" fill="#111111" stroke="none"/>
+    <rect x="46"  y="160" width="104" height="20" fill="#111111" stroke="none"/>
+    <rect x="46"  y="192" width="132" height="20" fill="#111111" stroke="none"/>
+
+    <!-- what you were about to build instead: unbuilt, dashed -->
+    <rect x="214" y="128" width="60" height="84" stroke="#111111" stroke-width="6"
+          stroke-dasharray="11 11" opacity="0.32"/>
+
+    <!-- look here first -->
+    <circle cx="140" cy="150" r="74" stroke="#111111" stroke-width="12"/>
+    <line x1="192" y1="202" x2="248" y2="258" stroke="#111111" stroke-width="14" stroke-linecap="round"/>
+
+  </g>
+</svg>
