@@ -1,61 +1,69 @@
 ---
 name: look-first
-description: "Read what you were given before building something new. Use whenever a task involves a repo, library, tool, dataset, template collection, or existing files you did not write — and before producing any derivative artifact (chart, diagram, summary, report, wrapper). Enforces: think before building, climb the ladder (does it need to exist / already here / stdlib / native / one line), keep it simple, make surgical changes, define verifiable success criteria, and say out loud what you skipped. Domain-agnostic: code, research, documents, data."
+description: "Read what you were given before building something new. Use whenever a task involves a repo, library, tool, dataset, template collection, or existing files you did not write — and before producing any derivative artifact (chart, diagram, summary, report, wrapper). Never claim a resource lacks something without having enumerated it. Enforces: think before coding, climb the ladder (does it need to exist / already here / stdlib / native / one line), simplicity, surgical changes, verifiable success criteria, and saying out loud what you skipped. Domain-agnostic: code, research, documents, data."
 license: MIT
 ---
 
 # Look first
 
-Behavioural guidelines that reduce common LLM mistakes, and kill the most common way an
-agent wastes a turn: it skims what it was handed, forms a rough mental model, and then
-generates *around* that model instead of *from* the thing itself. The output looks like
-progress and quietly misses what was already there.
+Behavioral guidelines to reduce common LLM coding mistakes.
 
-Domain-agnostic — code, research, documents, data, diagrams.
+Extended here to kill the most common way an agent wastes a turn — it skims what it was
+handed, forms a rough mental model, and generates *around* that model instead of *from*
+the thing itself — and generalised past code to research, documents, data, diagrams.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use
 judgment.
 
 ## Persistence
 
-ACTIVE EVERY RESPONSE. No drift back to over-building, or to generating around a resource
-instead of from it. Still active if unsure. Off only: "stop look-first" / "normal mode".
+ACTIVE EVERY RESPONSE. No drift back to over-building. Still active if unsure. Off only:
+"stop look-first" / "normal mode". Default: **full** — the ladder enforced, stdlib and
+native first, shortest diff, shortest explanation.
 
-## 1. Think Before Building
+## Surface is not understanding
+
+A first impression of what you were given is not knowledge of it — a repo, a library, a
+document, a dataset, someone else's answer. Do not act on the impression.
+
+- **Enumerate before you conclude.** What it actually contains, not what it looks like it
+  contains.
+- **Never claim absence you haven't verified.** "There's no X here" requires the list.
+  Otherwise say *"I haven't checked."*
+- **Before any derivative, ask what it adds.** A chart, a summary, a wrapper — what does it
+  carry that the source doesn't? No answer → don't build it.
+- **Missing logistics → drive. Missing intent → stop and ask.**
+
+Everything numbered below is karpathy's and ponytail's, unchanged. Outside code, read
+"code" as "the result" and "diff" as "the change". Source citations and correctness itself
+are never simplified away.
+
+## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
 
 - State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them — don't pick silently.
+- If multiple interpretations exist, present them - don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
 - If something is unclear, stop. Name what's confusing. Ask.
 
-The cost of guessing decides whether "stop and ask" or "keep going" is right:
-
-- **Missing logistics** (a tool to install, a file to be handed, a login) — say plainly
-  what you need and how to provide it, then continue. Don't stall on it.
-- **Missing intent or scope** (the whole task could be wasted work) — stop, name exactly
-  what is unclear, ask.
-
 ## 2. The Ladder
 
-Stop at the first rung that holds.
+Stop at the first rung that holds:
 
 1. **Does this need to exist at all?** Speculative need = skip it, say so in one line. (YAGNI)
-2. **Already here?** A helper, util, type, or pattern that already lives here → reuse it.
-   Look before you write; re-implementing what's a few files over is the most common slop.
-   **This covers anything you were handed** — a repo, a library, a dataset, a template
-   collection: read its entry documents and index *all the way through*, not the first
-   screen, and list what it actually provides before you generate from it.
+2. **Already in this codebase?** A helper, util, type, or pattern that already lives here →
+   reuse it. Look before you write; re-implementing what's a few files over is the most
+   common slop.
 3. **Stdlib does it?** Use it.
 4. **Native platform feature covers it?** `<input type="date">` over a picker lib, CSS over
    JS, DB constraint over app code.
 5. **Already-installed dependency solves it?** Use it. Never add a new one for what a few
    lines can do.
 6. **Can it be one line?** One line.
-7. **Only then:** the minimum that works.
+7. **Only then:** the minimum code that works.
 
 The ladder is a reflex, not a research project — but it runs *after* you understand the
 problem, not instead of it. Read the task and the code it touches first, trace the real
@@ -71,42 +79,42 @@ once, where all callers route through.
 
 ## 3. Simplicity First
 
-**Minimum work that solves the problem. Nothing speculative.**
+**Minimum code that solves the problem. Nothing speculative.**
 
 - No features beyond what was asked.
-- No abstractions for single-use code: no interface with one implementation, no factory
-  for one product, no config for a value that never changes.
+- No abstractions for single-use code.
 - No "flexibility" or "configurability" that wasn't requested.
 - No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+Further:
+
+- No unrequested abstractions: no interface with one implementation, no factory for one
+  product, no config for a value that never changes.
 - No boilerplate, no scaffolding "for later", later can scaffold for itself.
 - Deletion over addition. Boring over clever, clever is what someone decodes at 3am.
 - Fewest files possible. Shortest working diff wins — but only once you understand the
   problem. The smallest change in the wrong place isn't lazy, it's a second bug.
-- If you write 200 lines and it could be 50, rewrite it.
-- Two options, same size? Take the one that's correct on edge cases. Lazy means writing
-  less, not picking the flimsier algorithm.
-- Complex request? Ship the lazy version and question it in the same response: "Did X; Y
+- Complex request? Ship the lazy version and question it in the same response, "Did X; Y
   covers it. Need full X? Say so." Never stall on an answer you can default.
-
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-Applies past code. With the same content, prose plus a small table beats a diagram. Before
-building any derivative — a chart, a summary, a wrapper, an "improved" version — answer:
-
-> **What does this carry that the thing it derives from doesn't?**
-
-No answer → don't build it. Say the existing artifact already covers it.
+- Two stdlib options, same size? Take the one that's correct on edge cases. Lazy means
+  writing less code, not picking the flimsier algorithm.
+- Mark deliberate simplifications that cut a real corner with a known ceiling (global lock,
+  O(n²) scan, naive heuristic) with a `look-first:` comment naming the ceiling and upgrade
+  path (`# look-first: global lock, per-account locks if throughput matters`).
 
 ## 4. Surgical Changes
 
 **Touch only what you must. Clean up only your own mess.**
 
-When editing existing work:
+When editing existing code:
 
 - Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it — don't delete it.
+- If you notice unrelated dead code, mention it - don't delete it.
 
 When your changes create orphans:
 
@@ -124,7 +132,6 @@ Transform tasks into verifiable goals:
 - "Add validation" → "Write tests for invalid inputs, then make them pass"
 - "Fix the bug" → "Write a test that reproduces it, then make it pass"
 - "Refactor X" → "Ensure tests pass before and after"
-- "Summarise the record" → "No line contradicts the source; every figure traces to a file"
 
 For multi-step tasks, state a brief plan:
 
@@ -137,31 +144,29 @@ For multi-step tasks, state a brief plan:
 Strong success criteria let you loop independently. Weak criteria ("make it work") require
 constant clarification.
 
-Lazy work without its check is unfinished. Non-trivial logic (a branch, a loop, a parser,
-a money/security path) leaves ONE runnable check behind, the smallest thing that fails if
-the logic breaks. No frameworks, no fixtures, no per-function suites unless asked. Trivial
-one-liners need no test, YAGNI applies to tests too.
+Lazy code without its check is unfinished. Non-trivial logic (a branch, a loop, a parser, a
+money/security path) leaves ONE runnable check behind, the smallest thing that fails if the
+logic breaks: an `assert`-based `demo()`/`__main__` self-check or one small `test_*.py`. No
+frameworks, no fixtures, no per-function suites unless asked. Trivial one-liners need no
+test, YAGNI applies to tests too.
 
 ## 6. Output
 
-Result first. Then at most three short lines: what was skipped, when to add it. No essays,
-no feature tours, no design notes. If the explanation is longer than the thing it explains,
-delete the explanation — every paragraph defending a simplification is complexity smuggled
-back in as prose. Explanation the user explicitly asked for (a report, a walkthrough,
-per-phase notes) is not debt, give it in full; the rule is only against unrequested prose.
+Code first. Then at most three short lines: what was skipped, when to add it. No essays,
+no feature tours, no design notes. If the explanation is longer than the code, delete the
+explanation, every paragraph defending a simplification is complexity smuggled back in as
+prose. Explanation the user explicitly asked for (a report, a walkthrough, per-phase notes)
+is not debt, give it in full, the rule is only against unrequested prose.
 
-Pattern: `[result] → skipped: [X], add when [Y].`
-
-Mark a deliberate simplification that cuts a real corner with a known ceiling (global lock,
-O(n²) scan, naive heuristic) with a comment naming the ceiling and the upgrade path.
+Pattern: `[code] → skipped: [X], add when [Y].`
 
 ---
 
 ## Never simplify away
 
 Input validation at trust boundaries, error handling that prevents data loss, security
-measures, accessibility basics, source citations, correctness itself, anything explicitly
-requested. User insists on the full version → build it, no re-arguing.
+measures, accessibility basics, anything explicitly requested. User insists on the full
+version → build it, no re-arguing.
 
 **Never lazy about understanding the problem.** The ladder shortens the solution, never
 the reading. Trace the whole thing first — every file the change touches, the actual flow
@@ -169,13 +174,25 @@ the reading. Trace the whole thing first — every file the change touches, the 
 dangerous kind: it dresses up as efficiency and ships a confident wrong fix. **Read fully,
 then be lazy.**
 
+Hardware is never the ideal on paper: a real clock drifts, a real sensor reads off, a
+PCA9685 runs a few percent fast. Leave the calibration knob, not just less code, the
+physical world needs tuning a minimal model can't see.
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due
-to overcomplication, clarifying questions come before implementation rather than after
-mistakes, fewer "that tool already had X" moments after the fact, and fewer artifacts that
-carry no new information.
+to overcomplication, and clarifying questions come before implementation rather than after
+mistakes.
+
+**This addition is working if:** fewer "that tool already had X" moments after the fact,
+fewer stated absences that turn out to be false, and fewer artifacts that carry no new
+information.
+
+---
 
 ## Boundaries
 
-Governs process, not tone or subject-matter judgment.
+Governs what you build, not how you talk (pair with Caveman for terse prose).
+"stop look-first" / "normal mode": revert.
+
+The shortest path to done is the right path.

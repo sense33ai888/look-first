@@ -30,20 +30,33 @@ The output looks like progress. It quietly misses what was already there.
 and [ponytail](https://github.com/DietrichGebert/ponytail) kept whole, deduplicated, and
 extended past code — to research, documents, data, diagrams.
 
+## Surface is not understanding
+
+The addition. Everything numbered below is karpathy's and ponytail's, unchanged.
+
+> A first impression of what you were given is not knowledge of it — a repo, a library, a
+> document, a dataset, someone else's answer. Do not act on the impression.
+>
+> - **Enumerate before you conclude.** What it actually contains, not what it looks like it contains.
+> - **Never claim absence you haven't verified.** *"There's no X here"* requires the list. Otherwise say *"I haven't checked."*
+> - **Before any derivative, ask what it adds.** No answer → don't build it.
+> - **Missing logistics → drive. Missing intent → stop and ask.**
+
+The second bullet is the one with teeth: a stated absence is checkable. Ask *"what did you
+enumerate?"* and the answer is either a list or an admission.
+
 ## The rules
 
 | | Rule | | From |
 |---|---|---|---|
-| **1** | **Think before building** | State assumptions. Present both readings, don't pick silently. Simpler approach exists → say so. Unclear → name it and ask. | karpathy |
-| **2** | **The ladder** | Stop at the first rung that holds: needs to exist? · already here? · stdlib? · native? · one line? · then minimum. | ponytail |
-| **3** | **Simplicity first** | Minimum work that solves the problem. Nothing speculative. 200 lines that could be 50 → rewrite. | both |
+| **1** | **Think before coding** | State assumptions. Present both readings, don't pick silently. Simpler approach exists → say so. Unclear → name it and ask. | karpathy |
+| **2** | **The ladder** | Stop at the first rung that holds: needs to exist? · already in this codebase? · stdlib? · native? · installed dep? · one line? · then minimum. | ponytail |
+| **3** | **Simplicity first** | Minimum code that solves the problem. Nothing speculative. 200 lines that could be 50 → rewrite. | both |
 | **4** | **Surgical changes** | Touch only what you must. Every changed line traces to the request. | karpathy |
 | **5** | **Goal-driven execution** | Turn the task into a verifiable goal. Loop until it passes. Leave one runnable check. | both |
-| **6** | **Output** | Result first, then ≤3 lines: *did X; skipped Y, add when Z.* | ponytail |
+| **6** | **Output** | Code first, then ≤3 lines: *did X; skipped Y, add when Z.* | ponytail |
 
-The one thing neither had, grafted onto ladder rung 2: **anything you were handed — a
-repo, a library, a dataset, a template collection — gets its entry docs and index read
-all the way through, not the first screen, before you generate from it.**
+Plus **Persistence**, **Never simplify away** and **Boundaries**, from ponytail.
 
 The ladder runs **after** you understand the problem, never instead of it.
 **Read fully, then be lazy.** The reverse ships a confident wrong answer.
@@ -155,14 +168,18 @@ derived from Andrej Karpathy's observations on LLM coding pitfalls. All four sec
 **in full**: rules 1, 3, 4, 5.
 
 **Merged with** [ponytail](https://github.com/DietrichGebert/ponytail) (MIT) — the lazy
-senior dev. Its ladder, root-cause rule, simplicity rules, output shape, the
-one-runnable-check rule, and "read fully, then be lazy" kept **in full**: rule 2, rule 6,
-and the extra bullets in rules 3 and 5. Dropped only what the two duplicated, plus
-ponytail's `lite/full/ultra` switching — this is **full** mode, fixed.
+senior dev. Its ladder, root-cause rule, simplicity rules, output shape, one-runnable-check
+rule, persistence, boundaries, never-simplify list and "read fully, then be lazy" kept
+**in full**. Dropped only what the two sources duplicated, plus the `lite/full/ultra`
+switcher — this is **full** mode, fixed.
 
-**Added here:** ladder rung 2 extended to cover anything you were handed (read its index
-before generating from it); the derivative test; the logistics-vs-intent split that decides
-when to stall and when to drive; and the generalisation of all of it beyond code.
+Neither source's text is edited. Their sections are verbatim; the only renames are
+`ponytail` → `look-first` in the mode-off phrase and the ceiling-comment prefix.
+
+**Added here — the "Surface is not understanding" section, and nothing else:** enumerate
+before concluding, never claim an absence you haven't verified, the derivative test, and
+the logistics-vs-intent split that decides when to stall and when to drive. Plus the
+generalisation of all of it past code.
 
 ## License
 
