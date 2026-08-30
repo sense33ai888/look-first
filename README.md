@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
   <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20OpenClaw-111111?style=flat-square" alt="Works with Claude Code and OpenClaw">
   <img src="https://img.shields.io/badge/scope-any%20domain-111111?style=flat-square" alt="Domain agnostic">
-  <img src="https://img.shields.io/badge/size-60%20lines-111111?style=flat-square" alt="60 lines">
+  <img src="https://img.shields.io/badge/rules-6-111111?style=flat-square" alt="6 rules">
 </p>
 
 ---
@@ -26,23 +26,26 @@ the thing itself.
 
 The output looks like progress. It quietly misses what was already there.
 
-`look-first` is the reflex that stops it — for code, research, documents, data, diagrams.
+`look-first` is [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
+kept whole, extended with the reflex that stops the above — for code, research, documents,
+data, diagrams.
 
-## The order
+## The rules
 
-Stop at the first step that resolves the task.
-
-| | Step | |
+| | Rule | |
 |---|---|---|
-| **1** | **Does this need to exist at all?** | Speculative need — skip it, say so in one line. |
-| **2** | **Does it already exist here?** | A prior analysis, an existing file, a template the resource ships, a standard tool. → use it. |
-| **3** | **Does the given resource already do it?** | Read its entry docs and index *all the way through* — not the first screen. List what it actually provides. Then use it the way it was designed to be used. |
-| **4** | **Only then build** | In the smallest form that carries the information. |
+| **1** | **Think before building** | State assumptions. Present both readings, don't pick silently. Simpler approach exists → say so. Unclear → name it and ask. |
+| **2** | **Inventory, reuse, then build** | Read the resource's entry docs and index *all the way through* — not the first screen. Already exists → use it. |
+| **3** | **Simplicity first** | Minimum work that solves the problem. Nothing speculative. 200 lines that could be 50 → rewrite. |
+| **4** | **Surgical changes** | Touch only what you must. Every changed line traces to the request. |
+| **5** | **Goal-driven execution** | Turn the task into a verifiable goal. Loop until it passes. |
+| **6** | **Say what you skipped** | *Did X; skipped Y, add it when Z.* One line, not buried. |
 
-Step 2 is the one that gets skipped. Rebuilding what already lives here — or a few files
-over — is the most common error.
+Rules 1, 3, 4 and 5 are karpathy's, kept intact. Rule 2 is the addition and the one that
+gets skipped in practice — **rebuilding what already lives here, or a few files over, is
+the most common error.** Rule 6 keeps the shortcut visible.
 
-The order runs **after** you understand the task, never instead of it.
+Rule 2 runs **after** you understand the task, never instead of it.
 **Read fully, then keep the output small.** The reverse ships a confident wrong answer.
 
 ## Before any derivative
@@ -146,19 +149,18 @@ Clarifying questions landing before the work instead of after the mistake.
 
 ## Credits
 
-The four-part skeleton follows
-[andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) — think
-before coding · simplicity first · surgical changes · verifiable goals — itself derived
-from Andrej Karpathy's observations on LLM coding pitfalls.
+**Base:** [andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) —
+think before coding · simplicity first · surgical changes · goal-driven execution — itself
+derived from Andrej Karpathy's observations on LLM coding pitfalls. Its four sections are
+kept **in full**; they are rules 1, 3, 4 and 5 here.
 
-The reuse-first reflex, and the guard that comprehension must come *before* shortening,
-come from [ponytail](https://github.com/DietrichGebert/ponytail) (MIT): its ladder stops
-at the first rung that holds, and it warns that the ladder runs after you understand the
-problem, never instead of it.
+**Extended with** [ponytail](https://github.com/DietrichGebert/ponytail) (MIT): the
+reuse-first reflex, the guard that comprehension must come *before* shortening, and the
+"say what you skipped" output shape.
 
-`look-first` generalises both beyond code and adds the step neither has at its centre:
-**inventory the resource you were handed before you generate from it.** Text is
-independently written.
+**Added here:** inventory a resource you were handed before generating from it (rule 2);
+the derivative test; the logistics-vs-intent split that decides when to stall and when to
+drive; and the generalisation of all of it beyond code.
 
 ## License
 
