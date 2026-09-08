@@ -116,6 +116,21 @@ have a `.git` **file** instead of a directory; use Git to inspect and manage it.
 
 ### Connect your tools
 
+Codex's documented instruction loader does not expand Claude Code's `@path` imports.
+To share one rule body without extra configuration, keep it in `AGENTS.md` and import
+it from `CLAUDE.md` using `@AGENTS.md`. This is a compatibility choice, not a priority
+between tools. Claude Code documents this setup in its
+[AGENTS.md section](https://code.claude.com/docs/en/memory#agentsmd).
+
+Putting the body in `CLAUDE.md` and only a `@CLAUDE.md` pointer in `AGENTS.md` reverses
+this setup: Codex's instruction loader includes the pointer text without importing the
+referenced rules. Do not rely on an error to reveal this misconfiguration; verify the
+loaded instructions in a fresh session.
+
+In documentation, keep import examples in inline code or fenced code blocks so the
+literal `@` stays visible. In the actual `CLAUDE.md`, write the bare line `@AGENTS.md`
+without backticks or code fences: Claude Code skips imports inside Markdown code.
+
 | Tool | Entry point |
 |---|---|
 | Codex | Reads the project's `AGENTS.md` through its instruction discovery. |

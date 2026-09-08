@@ -13,6 +13,8 @@ with Git checkpoints and concise project handoffs.
   current handoff, concrete next steps, and milestone saves before unexpected interruptions.
   Extra directories and duplicate notes are not required.
 - Documented setup, OpenClaw workspace routing, concurrent worktrees, and authorized remotes.
+- Explained the import direction, the reversed-pointer failure, and the distinction
+  between code-formatted documentation examples and bare imports in actual CLAUDE.md files.
 
 ## Remaining
 - Confirm loading and handoff behavior in the user's actual Claude Code, Codex,
@@ -29,6 +31,8 @@ with Git checkpoints and concise project handoffs.
 - For 1.1.1, checked that all text before Project history and handoff is unchanged
   from the preceding commit; checked package synchronization, JSON, and whitespace.
 - Markdown local links and whitespace checks pass.
+- Checked README import examples retain literal @ characters and code formatting;
+  confirmed CLAUDE.md remains exactly the bare import line. Runtime loading remains untested.
 
 ## Next step
 Try the documented project-file setup in one project and confirm that a fresh session
