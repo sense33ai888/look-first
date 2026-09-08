@@ -1,0 +1,11 @@
+# Local operating-system files
+.DS_Store
+Thumbs.db
+
+# Local environment secrets; only keep sanitized example files
+.env
+.env.*
+!.env.example
+
+# Add this project's dependency caches and disposable build output as needed.
+# Keep source material and requested deliverables unless deliberately excluded.

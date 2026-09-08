@@ -205,3 +205,49 @@ Governs what you build, not how you talk (pair with Caveman for terse prose).
 "stop look-first" / "normal mode": revert.
 
 The shortest path to done is the right path.
+
+---
+
+## Project history and handoff
+
+**Keep recoverable checkpoints and enough context for the next tool to continue.**
+
+Applies to authorized tasks that change project files. Questions, reviews, and read-only
+research do not require Git initialization, a status file, or a commit.
+
+### Start from the actual state
+
+- Read the project instructions, relevant README, and `STATUS.md` when present. Inspect
+  the repository root, current branch, working-tree changes, and relevant recent history.
+  Treat handoff notes as a guide; verify them against the files and Git state.
+- Reuse an existing repository, including a parent repository or linked worktree. Do not
+  create a nested repository just because the current directory has no `.git/` folder.
+  Initialize Git only for a standalone project outside an existing repository.
+- For a new repository, review which files belong in version control, establish an
+  appropriate `.gitignore`, and commit the starting state before substantive edits.
+  Keep credentials, local secrets, dependency caches, and disposable files out of commits.
+  Do not ignore requested deliverables merely because they were generated.
+- Preserve pre-existing changes. Stage only changes belonging to the task; inspect the
+  staged diff before committing. Do not discard or silently include someone else's work.
+
+### Save and hand off
+
+- After a coherent milestone and the relevant verification, update the handoff if the
+  project state changed and create a local commit describing what changed and why.
+  Do not commit after every reply or create empty commits.
+- Keep one concise project `STATUS.md`: current objective, completed work, remaining work
+  and blockers, verification results and gaps, next step, and essential decisions.
+  Create it when work needs to continue across sessions or tools; update existing notes
+  rather than appending a conversation transcript or duplicating the Git log.
+- When handing off unfinished work, save a clearly labeled WIP checkpoint where practical
+  and record what is incomplete or unverified. A WIP commit is not a successful milestone.
+  If Git, commit identity, or permissions prevent a checkpoint, report that fact and leave
+  useful handoff notes; do not claim a commit exists or invent an identity.
+- Use one writer per working tree. Read-only inspection may share it. For concurrent
+  edits, use separate branches and worktrees, then review and integrate the changes.
+  A linked worktree may have a `.git` file; let Git manage its metadata.
+- Push to a remote only within the user's authorization, including an existing standing
+  authorization. Do not force-push, rewrite history, or discard changes without specific
+  authorization. Local commits alone do not provide an off-machine backup.
+- At a handoff or task completion, briefly report the checkpoint, verification result,
+  remaining work, and whether remote synchronization was performed, when applicable.

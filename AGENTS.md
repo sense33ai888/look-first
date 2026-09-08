@@ -1,16 +1,11 @@
----
-name: look-first
-description: "Read what you were given before building something new. Use whenever a task involves a repo, library, tool, dataset, template collection, or existing files you did not write — and before producing any derivative artifact (chart, diagram, summary, report, wrapper). Never claim a resource lacks something without having enumerated it. Enforces: think before coding, climb the ladder (does it need to exist / already here / stdlib / native / one line), simplicity, surgical changes, verifiable success criteria, and saying out loud what you skipped. Domain-agnostic: code, research, documents, data."
-license: MIT
----
-
 # Look first
 
-Behavioral guidelines to reduce common LLM coding mistakes.
+Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific
+instructions as needed.
 
-Extended here to kill the most common way an agent wastes a turn — it skims what it was
-handed, forms a rough mental model, and generates *around* that model instead of *from*
-the thing itself — and generalised past code to research, documents, data, diagrams.
+Extended here to kill the most common way an agent wastes a turn — skimming what it was
+handed, then building around it instead of from it — and generalised past code to
+research, documents, data, diagrams.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use
 judgment.
