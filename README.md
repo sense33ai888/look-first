@@ -13,7 +13,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
-  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20OpenClaw-111111?style=flat-square" alt="Works with Claude Code and OpenClaw">
+  <img src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20OpenClaw-111111?style=flat-square" alt="Works with Claude Code, Codex, and OpenClaw">
   <img src="https://img.shields.io/badge/scope-any%20domain-111111?style=flat-square" alt="Domain agnostic">
 </p>
 
