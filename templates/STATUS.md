@@ -13,7 +13,7 @@ Record unfinished work, known issues, and blockers.
 Record checks actually run, their results, and anything not yet verified.
 
 ## Next step
-State the next useful action for the person or tool taking over.
+State the next concrete action, with relevant file paths or commands when known.
 
 ## Important decisions
 Record only decisions and reasons needed to continue; omit this section if empty.

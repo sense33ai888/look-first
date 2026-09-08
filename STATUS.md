@@ -9,6 +9,9 @@ with Git checkpoints and concise project handoffs.
 - Added project-scoped Git and handoff instructions; CLAUDE.md imports AGENTS.md.
 - Synchronized both independently installable skills and updated the plugin to 1.1.0.
 - Added a handoff template, ignore starter, and synchronization/check command.
+- Clarified the minimum continuity setup in 1.1.1: existing project description plus
+  current handoff, concrete next steps, and milestone saves before unexpected interruptions.
+  Extra directories and duplicate notes are not required.
 - Documented setup, OpenClaw workspace routing, concurrent worktrees, and authorized remotes.
 
 ## Remaining
@@ -23,6 +26,8 @@ with Git checkpoints and concise project handoffs.
   rejects that OpenClaw-only key, so its shared body and YAML structure were checked separately.
 - Both plugin JSON manifests parse successfully.
 - The original CLAUDE.md text is preserved verbatim at the start of AGENTS.md.
+- For 1.1.1, checked that all text before Project history and handoff is unchanged
+  from the preceding commit; checked package synchronization, JSON, and whitespace.
 - Markdown local links and whitespace checks pass.
 
 ## Next step

@@ -216,6 +216,10 @@ research do not require Git initialization, a status file, or a commit.
 
 ### Start from the actual state
 
+- For work that continues across sessions, pair these rules with a brief project
+  description and one current handoff. Keep the description in the existing README or
+  project instructions: purpose, scope, key files, and relevant run/check commands.
+  Reuse existing equivalents; do not add a directory scaffold or duplicate notes.
 - Read the project instructions, relevant README, and `STATUS.md` when present. Inspect
   the repository root, current branch, working-tree changes, and relevant recent history.
   Treat handoff notes as a guide; verify them against the files and Git state.
@@ -238,6 +242,9 @@ research do not require Git initialization, a status file, or a commit.
   and blockers, verification results and gaps, next step, and essential decisions.
   Create it when work needs to continue across sessions or tools; update existing notes
   rather than appending a conversation transcript or duplicating the Git log.
+  Make the next step actionable, naming relevant files or commands when known. Save at
+  meaningful milestones rather than relying on a final session-end handoff; interruptions
+  may occur without warning.
 - When handing off unfinished work, save a clearly labeled WIP checkpoint where practical
   and record what is incomplete or unverified. A WIP commit is not a successful milestone.
   If Git, commit identity, or permissions prevent a checkpoint, report that fact and leave

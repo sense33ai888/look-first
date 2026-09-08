@@ -62,6 +62,12 @@ Use one project folder as the shared workspace. The original look-first rules li
 [`CLAUDE.md`](CLAUDE.md) imports that file. The packaged skills carry the same body so
 they also work when installed independently.
 
+The minimum for continuity is **look-first + a brief project description + a current
+`STATUS.md`**. Keep the description in your existing README or project instructions:
+what the project is for, its boundaries, key files, and relevant run/check commands.
+Reuse existing handoff notes if they already serve this purpose. No extra `records/`,
+`memory/`, or `runbooks/` directories are required; add them only when the project needs them.
+
 A typical project has:
 
 ```text
@@ -79,7 +85,10 @@ Git records saved file versions; it does not automatically save every edit or tr
 chat history. A commit is a checkpoint, not proof that the work is complete or verified.
 `STATUS.md` supplies the short handoff context that file history alone cannot provide.
 Keep it current at milestones or handoffs, not after every reply. Check its claims
-against the actual files and Git state before continuing.
+against the actual files and Git state before continuing. Save at meaningful milestones
+so an unexpected interruption does not leave the only useful context in chat. A fresh
+session should be able to identify the goal, verification gaps, and next concrete action
+from the project files.
 
 ### Set up a project
 
